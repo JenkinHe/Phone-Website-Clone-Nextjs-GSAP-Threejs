@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { chipImg, frameImg, frameVideo } from '../utils'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import { animateWithGsap } from '../utils/animations'
 
 const HowItWorks = () => {
     const videoRef = useRef()
@@ -16,6 +17,13 @@ const HowItWorks = () => {
             scale: 2,
             duration: 2,
             ease: 'power2.inOut'
+        })
+
+        animateWithGsap('.g_fadeIn',{
+            opacity:1,
+            y:0,
+            duration:1,
+            ease:'power2.inOut'
         })
     }, [])
 
@@ -76,6 +84,12 @@ const HowItWorks = () => {
                             with incredibly detailed environments and characters.
                         </p>
                     </div>
+                </div>
+
+                <div className='flex-1 flex justify-center flex-col g_fadeIn'>
+                    <p className='hiw-text'>New</p>
+                    <p className='hiw-text'>Pro class gpu</p>
+                    <p className='hiw-text'>with 6 cores</p>
                 </div>
 
             </div>
