@@ -2,17 +2,34 @@ import { useGSAP } from '@gsap/react'
 import React, { useRef } from 'react'
 import { animateWithGsap } from '../utils/animations'
 import { explore1Img, explore2Img, exploreVideo } from '../utils'
+import gsap from 'gsap'
 
 const Features = () => {
 
     const videoRef=useRef()
 
     useGSAP(()=>{
+        gsap.to('#exploreVideo',{
+            ...animationProps,
+            scrollTrigger:{
+                trigger:'#exploreVideo',
+                toggleActions:'play pause reverse restart',
+                start:'-10% bottom',
+                ...scrollProps
+            },
+            onComplete:()=>{
+                videoRef.current.play()
+            }
+        })
+
         animateWithGsap('#features_title',{y:0, opacity:1})
         animateWithGsap('.g_grow',{
             scale:1,opacity:1,ease:'power1' 
         },{
             scrub:5.5
+        })
+        animateWithGsap('.g_text',{
+            y:0, opactiy:1,ease:'power2.inOut',duration:1
         })
     },[])
 
@@ -49,6 +66,32 @@ const Features = () => {
                             </div>
                             <div className='overflow-hidden flex-1 h-[50vh]'>
                                 <img src={explore2Img} alt='titanium' className='feature-video g_grow'/>
+
+                            </div>
+
+                        </div>
+
+                        <div className='feature-text-container'>
+                            <div className='flex-1 flex-container'>
+                                <p className='feature-text g_text'>
+                                    iPhone 15 pro is {' '}
+                                    <span className='text-white'>
+                                        the first iphone to feature an aero-space grade titanium design
+                                    </span>
+                                    using the same alloy something missions to mars
+
+                                </p>
+
+                            </div>
+                            <div className='flex-1 flex-container'>
+                                <p className='feature-text g_text'>
+                                    iPhone 15 pro is {' '}
+                                    <span className='text-white'>
+                                        the first iphone to feature an aero-space grade titanium design
+                                    </span>
+                                    using the same alloy something missions to mars
+
+                                </p>
 
                             </div>
 
